@@ -1,19 +1,22 @@
-# This is a sample Python script.
+import read
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+slot = {}
+# slot["1"]=["12/05/2021","1","Zain Iqbal"]
+# slot["2"]=["13/05/2021","2","Uzair Iqbal"]
 
-#gyuguiui
-#commit by Awais
+totalSlots = range(30)
+j = 0
+k = 0
+for i in totalSlots:
+    if i == 15:
+        j = 0
+    if i == 10 or i == 20:
+        k = 0
+    temp = str(read.courses[j][0])
+    slot[temp] = ["12/05/2021", read.rooms[k][0], read.teachers[i][0]]
+    #slot[]
+    j = j+1
+    k = k+1
 
-#hello saad here
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+print(slot)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
