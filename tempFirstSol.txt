@@ -1,0 +1,30 @@
+totalSlots = range(30)
+j = 0
+k = 0
+dates_generator = slot_date
+
+for i in totalSlots:
+    if i == 15:
+        j = 0
+    temp = str(read.courses[j][0])
+    slot[temp] = ["0", "0", "0"]
+    j = j + 1
+
+j = 0
+k = 0
+for i in totalSlots:
+    if i == 15:
+        j = 0
+    if i == 10 or i == 20:
+        k = 0
+    if i / 3 == 0:
+        dates_generator += timedelta(days=1)
+    temp = str(read.courses[j][0])
+    temp2 = str(dates_generator)
+    if slot[temp] != ["0", "0", "0"]:
+        slot[temp] = [temp2, read.rooms[k][0], read.teachers[i][0]]
+
+    j = j+1
+    k = k+1
+
+print(slot)
