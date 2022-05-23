@@ -21,7 +21,7 @@ rooms = [list(row) for row in x_rooms.values]
 # reading test_studentCourse
 # course[0][0] == studentCourse[0][2]
 
-x_studentCourse = pandas.read_csv("test_dataset/test_studentCourse.csv", header=1)
+x_studentCourse = pandas.read_csv("test_dataset/test_studentCourse.csv", header=None)
 print("ID , StudentName , Course Code")
 print(x_studentCourse)
 
