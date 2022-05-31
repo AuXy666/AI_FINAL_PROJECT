@@ -197,8 +197,8 @@ def simulatedAneal(slotList):
     current = slotList
     next = []
     best = current
-    temperature = 50
-    coolingRate = 0.5
+    temperature = 1000
+    coolingRate = 0.2
     while temperature > 1:
         next = randomNeighbour(current)
         E = solutionCost(current) - solutionCost(next)
@@ -232,7 +232,7 @@ countCourseStudents = {}
 for x in read.courses:
     count = int(0)
     for y in read.studentCourse:
-        print(y)
+        #print(y)
         if y[2] == x[0]:
             count += 1
     countCourseStudents[x[0]] = count
@@ -254,8 +254,10 @@ slots = randomSlotGenerator(slots)
 # slots['CS211'][1] = 'Wednesday'
 # slots['CS211'][2] = '2P.M. - 5P.M.'
 # slots['CS211'][3] = 'Dr. Rabia Maqsood'
+count = 1
 for slot in slots:
-    print(slot, slots[slot])
+    print(count,"." , slot, slots[slot])
+    count+=1
 
 solutionCost(slots)
 os.system("pause")
