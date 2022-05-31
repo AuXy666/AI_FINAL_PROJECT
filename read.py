@@ -4,7 +4,7 @@ import pandas
 
 x_courses = pandas.read_csv("actual_dataset/courses.csv", header=None)
 #print("Course Id and Course Names")
-#print(x_courses)
+print(x_courses)
 
 #print("\n\n\n")
 courses = [list(row) for row in x_courses.values]
