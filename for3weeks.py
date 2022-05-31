@@ -13,19 +13,21 @@ def randomSlotGenerator(slotsList):
     for x in read.courses:
         #selecting date randomly and checking day should not be sunday and saturday
         while 1:
-            randDateIndex = random.randint(0,len(datesForTwoWeeks)-1)
-            day = dayNames[datesForTwoWeeks[randDateIndex].weekday()]
+            randDateIndex = random.randint(0, len(datesForThreeWeeks) - 1)
+            day = dayNames[datesForThreeWeeks[randDateIndex].weekday()]
             if day != 'Saturday' and day != 'Sunday':
                 break
 
-        if day != 'Friday':
-            randTimeIndex = random.randint(0, len(slotsForTwoWeeks) - 1)
-            slotAssigned = slotsForTwoWeeks[randTimeIndex]
-        else:
-            slotsFriday = ['9A.M. - 12P.M.', '2P.M. - 5P.M.']
-            randTimeIndex = random.randint(0, len(slotsFriday) - 1)
-            slotAssigned = slotsFriday[randTimeIndex]
+        # if day != 'Friday':
+        #     randTimeIndex = random.randint(0, len(slotsForTwoWeeks) - 1)
+        #     slotAssigned = slotsForTwoWeeks[randTimeIndex]
+        # else:
+        #     slotsFriday = ['9A.M. - 12P.M.', '2P.M. - 5P.M.']
+        #     randTimeIndex = random.randint(0, len(slotsFriday) - 1)
+        #     slotAssigned = slotsFriday[randTimeIndex]
 
+        randTimeIndex = random.randint(0, len(slotsForThreeWeeks) - 1)
+        slotAssigned = slotsForThreeWeeks[randTimeIndex]
         randTeacherIndex = random.randint(0,len(read.teachers)-1)
         totalStudentsForCourse = countCourseStudents[x[0]]
         #Rooms allocation
@@ -38,8 +40,8 @@ def randomSlotGenerator(slotsList):
             totalStudentsForCourse -= 28
 
         #assigning date, day slot time ,teacher and rooms for a Course exam randomly
-        slotsList[x[0]]=[str(datesForTwoWeeks[randDateIndex]),
-                     dayNames[datesForTwoWeeks[randDateIndex].weekday()],
+        slotsList[x[0]]=[str(datesForThreeWeeks[randDateIndex]),
+                     dayNames[datesForThreeWeeks[randDateIndex].weekday()],
                      slotAssigned,
                      read.teachers[randTeacherIndex][0],
                      roomsAlloted]
@@ -161,19 +163,21 @@ def randomNeighbour(slotList):
     #print(code)
     # selecting date randomly and checking day should not be sunday and saturday
     while 1:
-        randDateIndex = random.randint(0, len(datesForTwoWeeks) - 1)
-        day = dayNames[datesForTwoWeeks[randDateIndex].weekday()]
+        randDateIndex = random.randint(0, len(datesForThreeWeeks) - 1)
+        day = dayNames[datesForThreeWeeks[randDateIndex].weekday()]
         if day != 'Saturday' and day != 'Sunday':
             break
 
-    if day != 'Friday':
-        randTimeIndex = random.randint(0, len(slotsForTwoWeeks) - 1)
-        slotAssigned = slotsForTwoWeeks[randTimeIndex]
-    else:
-        slotsFriday = ['9A.M. - 12P.M.', '2P.M. - 5P.M.']
-        randTimeIndex = random.randint(0, len(slotsFriday) - 1)
-        slotAssigned = slotsFriday[randTimeIndex]
+    # if day != 'Friday':
+    #     randTimeIndex = random.randint(0, len(slotsForTwoWeeks) - 1)
+    #     slotAssigned = slotsForTwoWeeks[randTimeIndex]
+    # else:
+    #     slotsFriday = ['9A.M. - 12P.M.', '2P.M. - 5P.M.']
+    #     randTimeIndex = random.randint(0, len(slotsFriday) - 1)
+    #     slotAssigned = slotsFriday[randTimeIndex]
 
+    randTimeIndex = random.randint(0, len(slotsForThreeWeeks) - 1)
+    slotAssigned = slotsForThreeWeeks[randTimeIndex]
     randTeacherIndex = random.randint(0, len(read.teachers) - 1)
     totalStudentsForCourse = countCourseStudents[x[0]]
     # Rooms allocation
@@ -186,8 +190,8 @@ def randomNeighbour(slotList):
         totalStudentsForCourse -= 28
 
     # assigning date, day slot time ,teacher and rooms for a Course exam randomly
-    newSol[code] = [str(datesForTwoWeeks[randDateIndex]),
-                       dayNames[datesForTwoWeeks[randDateIndex].weekday()],
+    newSol[code] = [str(datesForThreeWeeks[randDateIndex]),
+                       dayNames[datesForThreeWeeks[randDateIndex].weekday()],
                        slotAssigned,
                        read.teachers[randTeacherIndex][0],
                        roomsAlloted]
@@ -214,7 +218,7 @@ def simulatedAneal(slotList):
         temperature -= coolingRate
     print("********************************************************************************************\n\nBest solution is :")
     for slot in slotList:
-        print(slot," = ",slotList[slot])
+        print(slot, " = ", slotList[slot])
     print("\nsolution cost is :")
     solutionCost(best)
 
@@ -222,11 +226,11 @@ def simulatedAneal(slotList):
 # count students in a course
 slots = {}
 dayNames=["Monday",'Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-slotsForTwoWeeks=['9A.M. - 12P.M.','1P.M. - 4P.M.','2P.M. - 5P.M.']
-datesForTwoWeeks=[]
+slotsForThreeWeeks=['9A.M. - 12P.M.', '2P.M. - 5P.M.']
+datesForThreeWeeks=[]
 startDate = datetime(2022, 5, 20)
-for i in range(14):
-    datesForTwoWeeks.append(startDate.date())
+for i in range(21):
+    datesForThreeWeeks.append(startDate.date())
     startDate += timedelta(days=1)
 countCourseStudents = {}
 for x in read.courses:
