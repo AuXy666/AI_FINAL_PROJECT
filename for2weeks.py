@@ -197,7 +197,7 @@ def simulatedAneal(slotList):
     current = slotList
     next = []
     best = current
-    temperature = 1000
+    temperature = 500
     coolingRate = 0.2
     while temperature > 1:
         next = randomNeighbour(current)
